@@ -2,12 +2,14 @@
 
 .menu {
     margin-left: 10px;
+    margin-right: 5px;
 
     .items {
         display: flex;
         flex-direction: column;
         gap: 10px;
         margin-bottom: 20px;
+        text-transform: uppercase;
 
         .title {
             gap: 10px;
