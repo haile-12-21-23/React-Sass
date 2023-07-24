@@ -13,7 +13,7 @@ type Props = {
 const DataTable = (props: Props) => {
   const handleDelete = (id: number) => {
     //Make APi call to delete user;
-    alert(id+" has been deleted successfully.")
+    console.log(id+" has been deleted successfully.")
   }
   const actionColumn: GridColDef = {
     field: "action",

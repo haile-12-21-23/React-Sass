@@ -1,22 +1,16 @@
-import React from 'react'
+import React, { useState } from 'react'
 import './users.scss'
 import DataTable from '../../components/dataTable/DataTable';
-import { GridColDef, GridValueGetterParams } from '@mui/x-data-grid';
+import { GridColDef, } from '@mui/x-data-grid';
 import { userRows } from '../../data';
+import AddUser from '../../components/addUser/AddUser';
 const columns: GridColDef[] = [
     { field: 'id', headerName: 'ID', width: 90 },
-  {field:"avatar",headerName:"Avatar",width:100, renderCell(params) {
+  {field:"img",headerName:"Avatar",width:100, renderCell(params) {
       return <img src={params.row.img ||"noAvatar.png"} alt="" />
   },
   },
-  // {field:"actions",headerName:"Actions",width:100, renderCell(params) {
-  //   return <div className="action">
-  //     <div className="view">View</div>
-  //     <div className="delete">Delete</div>
-  //     </div>
-  // },
-  // },
-  
+
   {
     field: 'firstName',
     headerName: 'First name',
@@ -45,7 +39,8 @@ const columns: GridColDef[] = [
     field: "createdAt",
     headerName: "Created At",
     width: 200,
-    type: "string",
+       type: "string",
+   
   },
        {
     field: "verified",
@@ -58,14 +53,16 @@ const columns: GridColDef[] = [
 
 
 
-const Users=()=> {
+const Users = () => {
+  const [open, setOpen] = useState(false);
   return (
     <div className='users'>
       <div className="info">
         <h1>Users</h1>
-        <button>Add Nwe User</button>
+        <button onClick={()=>{setOpen(true)}}>Add Nwe User</button>
       </div>
-      <DataTable slug="users" columns={columns }  rows={userRows}/>
+      <DataTable slug="users" columns={columns} rows={userRows} />
+      {open && <AddUser setOpen={setOpen} slug={'user'} columns={columns} />}
     </div>
   )
 }
